@@ -1,5 +1,27 @@
+<%@page import="br.com.fatecpg.locadora.User"%>
 <%@ page pageEncoding="UTF-8" %>
+<%
+    String erroMessage = null;
+if(request.getParameter("formLogin") !=null){
+    String login = request.getParameter("login");
+    String pass = request.getParameter("pass");
+    User u = User.getUser(login, pass);
+    if(u==null){
+       erroMessage = "Usuário e/ou senha inválido(s)";
+    }else{
+        session.setAttribute("user", u);
+        response.sendRedirect(request.getRequestURI());
+    }
+   
+}
+if(request.getParameter("formLogoff") !=null){
+    session.removeAttribute("user");
+}
+%>
 <h1>LOCADORA</h1>
+<% if(erroMessage !=null){ %>
+<h3 style="color: red"><%= erroMessage%></h3>
+<%}%>
 <%if(session.getAttribute("user") == null){%>
 <form method="post">
     Login:<input type="text" name="login"/>
@@ -7,5 +29,10 @@
     <input type="submit" name="formLogin" value="Entrar"/>
 </form>
 <%}else{%>
+<from>
+    <% User user = (User) session.getAttribute("user"); %>
+    Bem Vindo,<%= user.getName() %>[<%= user.getRole()%>]
+    <input type="submit" name="formLogoff" value="Sair"/>
+</from>
 <%}%>
 <hr/>
