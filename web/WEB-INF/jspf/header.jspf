@@ -2,6 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <%
+    String path = request.getContextPath();
     String errorMessage = null;
     if(request.getParameter("formLogin") != null){
         String login = request.getParameter("login");
@@ -37,5 +38,11 @@
     Bem Vindo, <%= user.getName() %> [<%= user.getRole()%>]
     <input type="submit" name="formLogoff" value="Sair"/>
 </form>
+    <h2>
+        <a href="<%=path%>/home.jsp">HOME</a>
+        <% if(user.getRole().equals("ADMIN")){ %>
+        || [<a href="<%=path%>/admin/users.jsp">USUÁRIOS</a>]
+        <% } %>
+    </h2>
 <%}%>
 <hr/>

@@ -74,4 +74,41 @@ public class User {
             return u;
         }
     }
+     public static ArrayList<User> getUsers() throws Exception{
+        String SQL = "SELECT * FROM USERS";
+        ArrayList<User> users = new ArrayList<>();
+        ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, new Object[]{});
+        
+       for(int i=0; i<list.size();i++){
+            Object row[] = list.get(i);
+            User u = new User(
+                      (long) row[0]
+                    , (String)row[1]
+                    , (String)row[2]
+                    , (String)row[3]
+                    , (long)row[4]);
+            users.add(u);
+        }
+        return users;
+    }
+    public static void addUser(String name,String role,String login,long passwordHash)
+           throws Exception{
+        String SQL = "INSERT INTO USERS VALUES("
+                +"default"
+                +", ?"
+                +", ?"
+                +", ?"
+                +", ?"
+                +")";
+
+//verifica erros aqui
+        Object parameters[] = (role, name, login, passwordHash);
+        DatabaseConnector.execute(SQL, parameters);
+    }
+        public static void removeUser(long id)
+           throws Exception{
+        String SQL = "DELETE FROM USERS WHERE ID =?";
+        Object parameters[] = (id);
+        DatabaseConnector.execute(SQL, parameters);
+    }
 }
