@@ -34,12 +34,12 @@
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf"%>
         <h1>LOCADORA - Página Usuários</h1>
-        <%if (session.getAttribute("user")==null){%>
-        <h2> É preciso estar autenticado para acessar este recurso</h2>
+        <%if(session.getAttribute("user")== null){%>
+            <h2>É preciso estar autenticado para acessar este recurso</h2>
         <%}else{%>
             <% User user = (User) session.getAttribute("user"); %>
             <% if(!user.getRole().equals("ADMIN")){%>
-            <h2>Você não tem permissão para acessar este recurso</h2>
+                <h2>Você não tem permissão para acessar este recurso</h2>
             <%}else{%>
             <%if(error !=null){%>
             <h3><%= error%></h3>

@@ -1,6 +1,14 @@
 <%@page import="br.com.fatecpg.locadora.User"%>
 <%@ page pageEncoding="UTF-8" %>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<link href="css/css.css" rel="stylesheet" type="text/css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
 <%
     String path = request.getContextPath();
     String errorMessage = null;
@@ -20,29 +28,41 @@
         response.sendRedirect(request.getRequestURI());
     }
 %>
+<div class="cor-1">
+    <br/><center><h1>MovieBuster</h1></center><br/>
+</div>
 
-<h1>LOCADORA</h1>
 <% if(errorMessage != null){ %>
-<h3 style="color: red"><%= errorMessage%></h3>
+<script>alert ("<%= errorMessage %>")</script>
 <%}%>
-
+<div class="container-fluid">
 <%if(session.getAttribute("user") == null){%>
-<form method="post">
-    Login: <input type="text" name="login" />
-    Senha: <input type="password" name="pass" />
-    <input type="submit" name="formLogin" value="Entrar" />
-</form>
+    <center><br/>Realize o login no sistema</center><hr/>
+    <form method="post">
+        <div class="form-group" align="center">
+            <div class="col-3">
+                Login: <br/><input type="text" class="form-control" name="login" placeholder="Ex: fulano"/><br/>
+            </div>
+            <div class="col-3">
+                Senha: <br/><input type="password" class="form-control" name="pass" placeholder="*******"/><br/>
+            </div>
+            <input type="submit" name="formLogin" value="Entrar" class="btn btn-light"/><br/><hr/>
+        </div>
+    </form>
+</div>
 <%}else{%>
-<form>
-    <% User user = (User) session.getAttribute("user"); %>
-    Bem Vindo, <%= user.getName() %> [<%= user.getRole()%>]
-    <input type="submit" name="formLogoff" value="Sair"/>
-</form>
-    <h2>
-        <a href="<%=path%>/home.jsp">HOME</a>
-        <% if(user.getRole().equals("ADMIN")){ %>
-        || [<a href="<%=path%>/admin/users.jsp">USUÁRIOS</a>]
-        <% } %>
-    </h2>
+<div class="container-fluid">
+    <form>
+        <br/><hr/>
+        <% User user = (User) session.getAttribute("user"); %>
+        <center>Bem Vindo, <%= user.getName() %> [<%= user.getRole()%>]
+        <input type="submit" name="formLogoff" value="Sair" class="btn btn-light"/></center><hr/>
+    </form>
+</div>
+<div class="container cor-2" align="center">
+    <a href="<%=path%>/home.jsp" style="color: #fff">Home</a>
+    <%if(user.getRole().equals("ADMIN")){%>
+    | <a href="<%=path%>/admin/users.jsp" style="color: #fff">Usuários</a>
+    <%}%>
+</div>
 <%}%>
-<hr/>

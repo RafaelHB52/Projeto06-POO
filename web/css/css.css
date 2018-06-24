@@ -1,0 +1,16 @@
+body{
+    font: 19px Montserrat, sans-serif;
+    line-height: 1.8;
+    background-color: #1abc9c;
+    color: #ffffff;
+}
+
+.cor-1{ 
+    background-color: #ffffff;
+    color: #555555;
+}
+
+.cor-2{
+    background-color: #555555;
+    color: #fff;
+}
