@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="imagem/movie.ico">
         <link href="css/css.css" rel="stylesheet"/>
         <title>MovieBuster</title>
     </head>
