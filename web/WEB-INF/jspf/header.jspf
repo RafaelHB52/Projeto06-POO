@@ -1,13 +1,9 @@
 <%@page import="br.com.fatecpg.locadora.User"%>
 <%@ page pageEncoding="UTF-8" %>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<link href="css/css.css" rel="stylesheet" type="text/css"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<%@include file="links.jspf" %>
+<link href="css/css.css" rel="stylesheet"/>
+<%@include file="scripts.jspf" %>
 
 <%
     String path = request.getContextPath();
@@ -33,7 +29,7 @@
 </div>
 
 <% if(errorMessage != null){ %>
-<script>alert ("<%= errorMessage %>")</script>
+<script>alert ("<%= errorMessage %>");</script>
 <%}%>
 <div class="container-fluid">
 <%if(session.getAttribute("user") == null){%>
@@ -51,18 +47,18 @@
     </form>
 </div>
 <%}else{%>
-<div class="container-fluid">
-    <form>
-        <br/><hr/>
-        <% User user = (User) session.getAttribute("user"); %>
-        <center>Bem Vindo, <%= user.getName() %> [<%= user.getRole()%>]
-        <input type="submit" name="formLogoff" value="Sair" class="btn btn-light"/></center><hr/>
-    </form>
-</div>
-<div class="container cor-2" align="center">
+<% User user = (User) session.getAttribute("user"); %>
+<div class="container-fluid cor-2" align="center">
     <a href="<%=path%>/home.jsp" style="color: #fff">Home</a>
     <%if(user.getRole().equals("ADMIN")){%>
     | <a href="<%=path%>/admin/users.jsp" style="color: #fff">Usuários</a>
     <%}%>
+</div>
+<div class="container-fluid">
+    <form>
+        <hr/>
+        <center>Bem Vindo, <%= user.getName() %> [<%= user.getRole()%>]
+        <input type="submit" name="formLogoff" value="Sair" class="btn btn-light"/></center><hr/>
+    </form>
 </div>
 <%}%>
