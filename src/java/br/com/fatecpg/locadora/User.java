@@ -102,13 +102,13 @@ public class User {
                 +")";
 
 //verifica erros aqui
-        Object parameters[] = (role, name, login, passwordHash);
+        Object parameters[] = {role, name, login, passwordHash};
         DatabaseConnector.execute(SQL, parameters);
     }
         public static void removeUser(long id)
            throws Exception{
         String SQL = "DELETE FROM USERS WHERE ID =?";
-        Object parameters[] = (id);
+        Object parameters[] = {id};
         DatabaseConnector.execute(SQL, parameters);
     }
 }
