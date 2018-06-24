@@ -13,19 +13,18 @@ public class DatabaseConnector {
     private static final String PASS = "locadora";
 
     public static ArrayList<Object[]> getQuery(String SQL, Object[] parameters) throws Exception{
-        ArrayList<Object[]> list =  new ArrayList<>();
+        ArrayList<Object[]> list = new ArrayList<>();
         Class.forName(DRIVER);
         Connection con = DriverManager.getConnection(URL, USER, PASS);
         PreparedStatement stmt = con.prepareStatement(SQL);
-        
         for(int i = 0; i < parameters.length; i++){
-            stmt.setObject(i+1, parameters[i]);
+            stmt.setObject(i + 1, parameters[i]);
         }
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
             Object row[] = new Object[rs.getMetaData().getColumnCount()];
-            for(int i = 0; i <= rs.getMetaData().getColumnCount(); i++){
-                row[i] = rs.getObject(i+1);
+            for(int i = 0; i < rs.getMetaData().getColumnCount(); i++){
+                row[i] = rs.getObject(i + 1);
             }
             list.add(row);
         }

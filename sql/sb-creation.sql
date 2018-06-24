@@ -9,7 +9,7 @@ CREATE TABLE users(
     , passwordHash BIGINT not null
 );
 INSERT INTO users VALUES
-(default, 'ADMIN', 'Admnistrator', 'admin', 1509442);
+(default, 'ADMIN', 'Administrador', 'admin', 1509442);
 INSERT INTO users VALUES
 (default, 'OPERADOR', 'Roberto', 'roberto', 1509442);
 

@@ -58,19 +58,19 @@ public class User {
     }
     
     public static User getUser(String login, String pass) throws Exception{
-        String SQL = "SELECT * FROM USERS WHERE login = ? AND passwordHash = ?";
+        String SQL = "SELECT * FROM USERS WHERE login = ? AND passwordhash = ?";
         Object parameters[] = {login, pass.hashCode()};
         ArrayList<Object[]> list = DatabaseConnector.getQuery(SQL, parameters);
-        
         if(list.isEmpty()){
             return null;
-        } else {
+        }else{
             Object row[] = list.get(0);
-            User u = new User((long)row[0]
-                    , (String)row[1]
-                    , (String)row[2]
-                    , (String)row[3]
-                    , (long)row[4]);
+            User u = new User(
+                    (long) row[0]
+                    , (String) row[1]
+                    , (String)  row[2]
+                    , (String)  row[3]
+                    , (long)  row[4]);
             return u;
         }
     }
