@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-2"> 
                                     <select name="genre" class="form-control">
-                                        <option value="AÇÂO">AÇÂO</option>
+                                        <option value="AÇÂO">AÇÃO</option>
                                         <option value="TERROR">TERROR</option>
                                         <option value="ANIMAÇÃO">ANIMAÇÃO</option>
                                         <option value="ROMANCE">ROMANCE</option>
@@ -77,16 +77,16 @@
                     </div>
                 </fieldset>
                 
-            <br/><h2 align="center">Catalogo de Filmes</h2>
+            <br/><h2 align="center">Catálogo de Filmes</h2>
             <div class="container">
                 <table class="table table-dark " border="1">
                     <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Genero</th>
+                        <th>Gênero</th>
                         <th>Nome</th>
                         <th>Data</th>
-                        <th>Disponivel</th>
+                        <th>Disponível</th>
                         <th>Comando</th>
                     </tr>
                     </thead>

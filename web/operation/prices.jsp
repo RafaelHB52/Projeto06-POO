@@ -26,46 +26,61 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="../WEB-INF/jspf/links.jspf"%>
         <title>MovieBuster</title>
     </head>
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf" %>
-        <h1>Preços</h1>
+        
+        <h2 align="center">Preços</h2><hr/>
         <% if(session.getAttribute("user") == null){ %>
-            <h2>É preciso estar autenticado para acessar este recurso</h2>
+            <script> alert("É preciso estar autenticado para acessar este recurso");</script>
         <% }else{ %>
             <% User user = (User) session.getAttribute("user"); %>
             <% if(error != null){ %>
                  <h3><%= error%></h3>
             <% } %>
             <fieldset>
-                <legend>Novo Preço</legend>
-                <form>
-                    Novo Preço: <input type="text" name="price"/>
-                    <input type="submit" name="formNewPrice" value="Add"/>
-                </form>
+                <legend align="center">Novo Preço</legend>
+                <div class="container" align="center">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-3">
+                                <input type="text" class="form-control" name="price" placeholder="Insira o preço"/>
+                            </div>
+                            <input type="submit" name="formNewPrice" value="Cadastrar" class="btn btn-light btn-sm"/>
+                        </div>
+                    </form>
+                </div>
             </fieldset>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Data/Hora</th>
-                    <th>Preço</th>
-                    <th>Comando</th>
-                </tr>
-                <% for(Price p: Price.getPrices()){%>
-                <tr>
-                    <td><%= p.getId() %></td>
-                    <td><%= p.getTimestamp() %></td>
-                    <td><%= p.getPrice() %></td>
-                    <td>
-                        <form>
-                            <input type="hidden" name="id" value="<%= p.getId() %>"/>
-                            <input type="submit" name="formDeletePrice" value="Remover"/>
-                        </form>
-                    </td>
-                </tr>
-                <% } %>
-            </table>
-        <% } %>
+            
+            <br/><h2 align="center">Tabela de Preços</h2>
+            <div class="container">
+                <table class="table table-dark" border="1">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Data/Hora</th>
+                        <th>Preço</th>
+                        <th>Comando</th>
+                    </tr>
+                    </thead>
+                    <% for(Price p: Price.getPrices()){%>
+                    <tr>
+                        <td><%= p.getId() %></td>
+                        <td><%= p.getTimestamp() %></td>
+                        <td><%= p.getPrice() %></td>
+                        <td>
+                            <form>
+                                <input type="hidden" name="id" value="<%= p.getId() %>"/>
+                                <input type="submit" class="btn btn-outline-light" name="formDeletePrice" value="Remover"/>
+                            </form>
+                        </td>
+                    </tr>
+                    <%}%>
+                </table>
+            </div>
+        <%}%>
+        <%@include file="../WEB-INF/jspf/scripts.jspf" %>
     </body>
 </html>
