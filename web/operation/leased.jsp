@@ -62,9 +62,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Nome do filme</th>
-                            <th>Nome do clinte</th>
+                            <th>Nome do cliente</th>
                             <th>Data de locação</th>
-                            <th>Preço</th>
                             <th>Comando</th>
                         </tr>
                     </thead>
@@ -74,7 +73,6 @@
                         <td><%= l.getName() %></td>
                         <td><%= l.getClient() %></td>
                         <td><%= l.getBegins() %></td>
-                        <td><%= l.getPrice() %></td>
                         <td>
                             <a href="finish-leased.jsp?id=<%= l.getId() %>"><h5 class="btn btn-outline-light">Registrar Devolução</h5></a>
                         </td>

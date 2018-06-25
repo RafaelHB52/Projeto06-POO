@@ -86,7 +86,7 @@ public class Leased {
             return l;
         }
     }
-    
+    /* Histórico
     public static ArrayList<Leased> getHistory(String date, String name, String client) throws Exception{
         ArrayList<Object[]> list = null;
         if(date == null && name != null && client != null){
@@ -127,6 +127,7 @@ public class Leased {
         }
         return leaseds;
     }
+    */
     
     public static ArrayList<Leased> getLeaseds() throws Exception{
         String SQL = "SELECT * FROM LEASED_MOVIES WHERE END_PERIOD IS NULL ORDER BY BEGIN_PERIOD";

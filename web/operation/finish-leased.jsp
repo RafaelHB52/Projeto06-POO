@@ -14,7 +14,7 @@
         leased = Leased.getLeased(id);
         Date now = new Date();
         hours = now.getHours() - leased.getBegins().getHours();
-        price = hours * Movie.getPrice();
+      //verificar erro aqui > price = hours * Movie.getPrice();
         
         if(request.getParameter("formFinishLeased") != null){
             try{
@@ -31,27 +31,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="../WEB-INF/jspf/links.jspf"%>
         <title>MovieBuster</title>
     </head>
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf" %>
-        <h1>Registrar Devolução</h1>
+        <h2 align="center">Registrar Devolução</h2><hr/>
         <% if(error != null){ %>
             <h3><%= error%></h3>
         <% } %>
         <% if(session.getAttribute("user") == null){ %>
-            <h2>É preciso estar autenticado para acessar este recurso</h2>
+            <script> alert("É preciso estar autenticado para acessar este recurso");</script>
         <% }else if(leased != null){ %>
             <% User user = (User) session.getAttribute("user"); %>
-            <form>
-                <h3>ID: <%= id %></h3>
-                <h3>Nome do Filme: <%= leased.getName() %></h3>
-                <h3>Nome do cliente:  <%= leased.getClient() %></h3>
-                <h3>Horas:  <%= hours %></h3>
-                <h3>Preço:  <%= price %></h3>
-                <input type="hidden" value="<%= id %>" name="id"/>
-                <h3><input type="submit" name="formFinishLeased" value="Registrar Devolução"/>&nbsp;&nbsp;<a href="leased.jsp">Voltar</a></h3>
-            </form>
+            <div class="container" align="center">
+                <form>
+                    <h4>ID: <%= id %></h4>
+                    <h4>Nome do Filme: <%= leased.getName() %></h4>
+                    <h4>Nome do cliente:  <%= leased.getClient() %></h4>
+                    <h4>Horas:  <%= hours %></h4>
+                    <h4>Preço:  <%= price %></h4>
+                    <input type="hidden" value="<%= id %>" name="id"/><br/>
+                    <a href="leased.jsp" class="btn btn-light btn">Voltar</a>&nbsp;&nbsp;<input type="submit" class="btn btn-light btn" name="formFinishLeased" value="Registrar Devolução"/>
+                </form>
+            </div>
         <% } %>
+        
+        <%@include file="../WEB-INF/jspf/scripts.jspf" %>
     </body>
 </html>
