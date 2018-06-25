@@ -45,4 +45,5 @@ CREATE TABLE leased_movies(
     , begin_period TIMESTAMP not null
     , end_period TIMESTAMP
     , price DOUBLE PRECISION
+    /*, CONSTRAINT id_movies FOREIGN KEY(id) REFERENCES movies(id) */
 );

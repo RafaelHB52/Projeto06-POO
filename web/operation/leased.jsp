@@ -1,3 +1,4 @@
+<%@page import="br.com.fatecpg.locadora.Movie"%>
 <%@page import="br.com.fatecpg.locadora.Leased"%>
 <%@page import="java.util.Date"%>
 <%@page import="br.com.fatecpg.locadora.Price"%>
@@ -34,7 +35,11 @@
             <fieldset>
                 <legend>Cadastro de aluguel</legend>
                 <form>
-                    Nome do filme: <input type="text" name="name"/>
+                    <select name="name">
+                        <%for(Movie u: Movie.getMovies()){%>
+                            <option value="<%=u.getName()%>"><%=u.getName()%></option>
+                        <% } %>
+                    </select>
                     Nome do client: <input type="text" name="client"/>
                     <input type="submit" name="formNewLeased" value="Registrar Aluguel"/>
                 </form>
@@ -45,6 +50,7 @@
                     <th>Nome do filme</th>
                     <th>Nome do clinte</th>
                     <th>Data de locação</th>
+                    <th>Preço</th>
                     <th>Comando</th>
                 </tr>
                 <% for(Leased l: Leased.getLeaseds()){%>
@@ -53,6 +59,7 @@
                     <td><%= l.getName() %></td>
                     <td><%= l.getClient() %></td>
                     <td><%= l.getBegins() %></td>
+                    <td><%= l.getPrice() %></td>
                     <td>
                         <a href="finish-leased.jsp?id=<%=l.getId()%>">Registrar Devolução</a>
                     </td>
