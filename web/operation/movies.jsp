@@ -79,7 +79,7 @@
                 
             <br/><h2 align="center">Catálogo de Filmes</h2>
             <div class="container">
-                <table class="table table-dark " border="1">
+                <table class="table table-dark" border="1">
                     <thead class="thead-dark">
                     <tr>
                         <th>ID</th>

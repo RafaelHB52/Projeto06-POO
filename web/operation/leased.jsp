@@ -2,6 +2,7 @@
 <%@page import="br.com.fatecpg.locadora.Leased"%>
 <%@page import="java.util.Date"%>
 <%@page import="br.com.fatecpg.locadora.Price"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -20,39 +21,53 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="../WEB-INF/jspf/links.jspf"%>
         <title>MovieBuster</title>
     </head>
     <body>
         <%@include file="../WEB-INF/jspf/header.jspf" %>
-        <h1>Alugar filme</h1>
+        <h2 align="center">Alugar filme</h2><hr/>
         <% if(session.getAttribute("user") == null){ %>
-            <h2>É preciso estar autenticado para acessar este recurso</h2>
+            <script> alert("É preciso estar autenticado para acessar este recurso");</script>
         <% }else{ %>
             <% User user = (User) session.getAttribute("user"); %>
             <% if(error != null){ %>
                  <h3><%= error%></h3>
             <% } %>
             <fieldset>
-                <legend>Cadastro de aluguel</legend>
-                <form>
-                    <select name="name">
-                        <%for(Movie u: Movie.getMovies()){%>
-                            <option value="<%=u.getName()%>"><%=u.getName()%></option>
-                        <% } %>
-                    </select>
-                    Nome do client: <input type="text" name="client"/>
-                    <input type="submit" name="formNewLeased" value="Registrar Aluguel"/>
-                </form>
+                <legend align="center">Cadastro de aluguel</legend>
+                <div class="container" align="center">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-3">
+                                <select name="name" class="form-control">
+                                    <%for(Movie u: Movie.getMovies()){%>
+                                        <option value="<%=u.getName()%>"><%=u.getName()%></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" name="client" placeholder="Nome do cliente"/>
+                            </div>
+                            <input type="submit" name="formNewLeased" value="Registrar Aluguel" class="btn btn-light btn-sm"/>
+                        </div>
+                    </form>
+                </div>
             </fieldset>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Nome do filme</th>
-                    <th>Nome do clinte</th>
-                    <th>Data de locação</th>
-                    <th>Preço</th>
-                    <th>Comando</th>
-                </tr>
+            
+            <br/><h2 align="center">Filmes Alugados</h2>
+            <div class="container">
+            <table class="table table-dark" border="1">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome do filme</th>
+                        <th>Nome do clinte</th>
+                        <th>Data de locação</th>
+                        <th>Preço</th>
+                        <th>Comando</th>
+                    </tr>
+                </thead>
                 <% for(Leased l: Leased.getLeaseds()){%>
                 <tr>
                     <td><%= l.getId() %></td>
@@ -61,11 +76,13 @@
                     <td><%= l.getBegins() %></td>
                     <td><%= l.getPrice() %></td>
                     <td>
-                        <a href="finish-leased.jsp?id=<%=l.getId()%>">Registrar Devolução</a>
+                        <a href="finish-leased.jsp?id=<%= l.getId() %>"><h5 class="btn btn-outline-light">Registrar Devolução</h5></a>
                     </td>
                 </tr>
                 <% } %>
             </table>
         <% } %>
+        
+        <%@include file="../WEB-INF/jspf/scripts.jspf" %>
     </body>
 </html>
