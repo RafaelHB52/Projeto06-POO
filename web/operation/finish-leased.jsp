@@ -52,7 +52,8 @@
                     <h4>Horas:  <%= hours %></h4>
                     <h4>Preço:  <%= price %></h4>
                     <input type="hidden" value="<%= id %>" name="id"/><br/>
-                    <a href="leased.jsp" class="btn btn-light btn">Voltar</a>&nbsp;&nbsp;<input type="submit" class="btn btn-light btn" name="formFinishLeased" value="Registrar Devolução"/>
+                    <a href="leased.jsp" class="btn btn-light btn">Voltar</a>&nbsp;
+                    &nbsp;<input type="submit" class="btn btn-light btn" name="formFinishLeased" value="Registrar Devolução"/>
                 </form>
             </div>
         <% } %>

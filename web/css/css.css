@@ -7,10 +7,15 @@ body{
 
 .cor-1{ 
     background-color: #ffffff;
-    color: #555555;
+    color: #555555;    
 }
 
 .cor-2{
     background-color: #555555;
     color: #fff;
+}
+
+.img{
+    background-image: url("../imagem/filmstrip.png");
+    background-position: no-repeat;
 }

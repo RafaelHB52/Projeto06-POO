@@ -24,7 +24,8 @@
         response.sendRedirect(request.getRequestURI());
     }
 %>
-<div class="cor-1">
+<div class="cor-1 img">
+  
     <br/><center><h1>MovieBuster</h1></center><br/>
 </div>
 
