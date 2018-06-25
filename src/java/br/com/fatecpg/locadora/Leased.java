@@ -90,32 +90,32 @@ public class Leased {
     public static ArrayList<Leased> getHistory(String date, String name, String client) throws Exception{
         ArrayList<Object[]> list = null;
         if(date == null && name != null && client != null){
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " WHERE name = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{name, client});
         }else if(date != null && name == null && client != null){
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{date, client});
          }else if(date != null && name != null && client != null){
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ? AND name = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{date, name, client});
         }else if(date != null && name == null && client == null){
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{date});
          }else if(date != null && name != null && client == null){
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ? AND name = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{date, name});
         }else{
-            String SQL = "SELECT * FROM LEASED_MOVIES ";
+            String SQL = "SELECT * FROM leased_movies ";
             SQL += " ORDER BY BEGIN_PERIOD";
             list = DatabaseConnector.getQuery(SQL, new Object[]{});
         }
