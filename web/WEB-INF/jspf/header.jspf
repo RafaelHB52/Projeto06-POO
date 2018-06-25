@@ -52,6 +52,10 @@
     <a href="<%=path%>/home.jsp" style="color: #fff">Home</a>
     <%if(user.getRole().equals("ADMIN")){%>
     | <a href="<%=path%>/admin/users.jsp" style="color: #fff">Usuários</a>
+    | <a href="<%= path%>/operation/prices.jsp" style="color: #fff">Preços</a>
+    | <a href="<%= path%>/operation/movies.jsp" style="color: #fff">Filmes</a>
+    | <a href="<%= path%>/operation/leased.jsp" style="color: #fff">Alugar</a>
+    | <a href="<%= path%>/operation/history.jsp" style="color: #fff">Histórico</a>
     <%}%>
 </div>
 <div class="container-fluid">
