@@ -121,7 +121,7 @@
                                 </div>
                                 <input type="hidden" name="id" value="<%= f %>"/>
                                 <input type="submit" name="formUpdateMovie" value="Salvar Alteração" class="btn btn-light btn-sm">
-                                <a href="movies.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn-sm" name="formCancelUpdate" value="Cancelar"/></a>
+                                <a href="movies.jsp"><input type="submit" class="btn btn-light btn-sm" name="formCancelUpdate" value="Cancelar"/></a>
                                 <% } %>
                             </div>
                         </form>
@@ -139,7 +139,7 @@
                         <th>Data</th>
                         <th>Disponível</th>
                         <th>Preço</th>
-                        <th>Comando</th>
+                        <th>Comandos</th>
                     </tr>
                     </thead>
                     <%for(Movie m: Movie.getMovies()){%>
@@ -151,7 +151,7 @@
                         <td><%=m.getStock()%> </td>
                         <td><%=m.getPrice()%> </td>
                         <td>
-                            <form>
+                            <form align="center">
                                 <input type="hidden" name="id" value="<%=m.getId()%>"/>
                                 <input type="submit" class="btn btn-outline-light" name="formUpdateMovie" value="Alterar">
                                 <input type="submit" class="btn btn-outline-light" name="formDeleteMovie" value="Remover"/>

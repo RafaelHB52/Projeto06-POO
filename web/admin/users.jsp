@@ -81,10 +81,10 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="login" placeholder="Insira o login"required>
+                                    <input type="text" class="form-control" name="login" placeholder="Insira o login" required>
                                 </div>
                                 <div class="col-3">
-                                    <input type="password" class="form-control" name="pass" placeholder="Insira a senha"required>
+                                    <input type="password" class="form-control" name="pass" placeholder="Insira a senha" required>
                                 </div>
                                 <input type="submit" name="formNewUser" value="Cadastrar" class="btn btn-light btn-sm">
                                 <% }else{ 
@@ -92,7 +92,7 @@
                                 <form>
                             <div class="form-row">
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="name" value="<%= User.getUsers().get(f-1).getName() %>"required>
+                                    <input type="text" class="form-control" name="name" value="<%= User.getUsers().get(f-1).getName() %>" required>
                                 </div>
                                 <div class="col-2"> 
                                     <select name="role" class="form-control">
@@ -100,15 +100,15 @@
                                         <option value="OPERADOR">OPERADOR</option>
                                     </select>
                                 </div>
-                                <div class="col-3">
-                                    <input type="text" class="form-control" name="login" value="<%= User.getUsers().get(f-1).getLogin() %>"required>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" name="login" value="<%= User.getUsers().get(f-1).getLogin() %>" required>
                                 </div>
-                                <div class="col-3">
-                                    <input type="password" class="form-control" name="pass" value="<%= User.getUsers().get(f-1).getPasswordHash() %>"required>
+                                <div class="col-2">
+                                    <input type="password" class="form-control" name="pass" value="<%= User.getUsers().get(f-1).getPasswordHash() %>" required>
                                 </div>
                                 <input type="hidden" name="id" value="<%= f %>"/>
                                 <input type="submit" name="formUpdateUser" value="Salvar Alteração" class="btn btn-light btn-sm">
-                                <a href="users.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn" name="formCancelUpdate" value="Cancelar"/></a>
+                                | <a href="users.jsp"><input type="submit" class="btn btn-light btn" name="formCancelUpdate" value="Cancelar"/></a>
                                 <% } %>
                             </div>
                         </form>
@@ -124,7 +124,7 @@
                         <th>Papel</th>
                         <th>Nome</th>
                         <th>Login</th>
-                        <th>Comando</th>
+                        <th>Comandos</th>
                     </tr>
                     </thead>
                     <%for(User u: User.getUsers()){%>
@@ -134,7 +134,7 @@
                         <td><%=u.getName()%> </td>
                         <td><%=u.getLogin()%> </td>
                         <td>
-                            <form>
+                            <form align="center">
                                 <input type="hidden" name="id" value="<%=u.getId()%>"/>
                                 <input type="submit" class="btn btn-outline-light" name="formUpdateUser" value="Alterar">
                                 <input type="submit" class="btn btn-outline-light" name="formDeleteUser" value="Remover"/>

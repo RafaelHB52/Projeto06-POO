@@ -14,7 +14,6 @@
         leased = Leased.getLeased(id);
         Date now = new Date();
         hours = now.getHours() - leased.getBegins().getHours();
-      //verificar erro aqui > price = hours * Movie.getPrice();
         
         if(request.getParameter("formFinishLeased") != null){
             try{

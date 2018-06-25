@@ -50,9 +50,6 @@
                             <div class="col-3">
                                 <input type="text" class="form-control" name="client" placeholder="Nome do cliente"/>
                             </div>
-                            <div class="col-3">
-                                <input type="text" class="form-control" name="price" placeholder="preço"/>
-                            </div>
                             <input type="submit" name="formNewLeased" value="Registrar Aluguel" class="btn btn-light btn-sm"/>
                         </div>
                     </form>
