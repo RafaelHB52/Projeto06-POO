@@ -53,7 +53,7 @@
                         <form>
                             <div class="form-row">
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Insira o nome">
+                                    <input type="text" class="form-control" name="name" placeholder="Insira o nome"required>
                                 </div>
                                 <div class="col-2"> 
                                     <select name="role" class="form-control">
@@ -62,10 +62,10 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="login" placeholder="Insira o login">
+                                    <input type="text" class="form-control" name="login" placeholder="Insira o login"required>
                                 </div>
                                 <div class="col-3">
-                                    <input type="password" class="form-control" name="pass" placeholder="Insira a senha">
+                                    <input type="password" class="form-control" name="pass" placeholder="Insira a senha"required>
                                 </div>
                                 <input type="submit" name="formNewUser" value="Cadastrar" class="btn btn-light btn-sm">
                             </div>
