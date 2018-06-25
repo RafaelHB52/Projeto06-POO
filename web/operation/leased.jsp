@@ -10,7 +10,8 @@
         try{
             String name = request.getParameter("name");
             String client = request.getParameter("client");
-            Leased.addLeased(name, client);
+            double price = Double.parseDouble(request.getParameter("price"));
+            Leased.addLeased(name, client, price);
             response.sendRedirect(request.getRequestURI());
         }catch(Exception e){
             error = e.getMessage();
@@ -48,6 +49,9 @@
                             </div>
                             <div class="col-3">
                                 <input type="text" class="form-control" name="client" placeholder="Nome do cliente"/>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" name="price" placeholder="preço"/>
                             </div>
                             <input type="submit" name="formNewLeased" value="Registrar Aluguel" class="btn btn-light btn-sm"/>
                         </div>

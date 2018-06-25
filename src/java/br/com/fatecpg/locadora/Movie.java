@@ -111,9 +111,9 @@ public class Movie {
            throws Exception{
         String SQL = "UPDATE MOVIES"
                 + " SET name = ?, genre = ?, stock = ?, price = ? "
-                + " WHERE ID = ?";
+                + " WHERE ID = " + id;
 
-        Object parameters[] = {id, genre, name, stock, price};
+        Object parameters[] = {name, genre, stock, price};
         DatabaseConnector.execute(SQL, parameters);
     }
 }

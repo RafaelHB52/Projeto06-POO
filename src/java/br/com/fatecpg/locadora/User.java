@@ -74,6 +74,7 @@ public class User {
             return u;
         }
     }
+    
      public static ArrayList<User> getUsers() throws Exception{
         String SQL = "SELECT * FROM USERS";
         ArrayList<User> users = new ArrayList<>();
@@ -91,6 +92,7 @@ public class User {
         }
         return users;
     }
+     
     public static void addUser(String name,String role,String login,long passwordHash)
            throws Exception{
         String SQL = "INSERT INTO USERS VALUES("
@@ -100,15 +102,24 @@ public class User {
                 +", ?"
                 +", ?"
                 +")";
-
-//verifica erros aqui
         Object parameters[] = {role, name, login, passwordHash};
         DatabaseConnector.execute(SQL, parameters);
     }
-        public static void removeUser(long id)
+    
+    public static void removeUser(long id)
            throws Exception{
         String SQL = "DELETE FROM USERS WHERE ID =?";
         Object parameters[] = {id};
+        DatabaseConnector.execute(SQL, parameters);
+    }
+        
+    public static void updateUser(long id, String name, String role, String login, long passwordHash)
+           throws Exception{
+        String SQL = "UPDATE USERS"
+                + " SET name = ?, role = ?, login = ?, passwordHash = ?"
+                + " WHERE ID = " + id;
+
+        Object parameters[] = {name, role, login, passwordHash};
         DatabaseConnector.execute(SQL, parameters);
     }
 }

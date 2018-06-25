@@ -13,6 +13,24 @@
         }
     }
     
+    if(request.getParameter("formUpdateUser")!= null){
+        try{
+            long id = Long.parseLong(request.getParameter("id"));
+            String name = request.getParameter("name");
+            String role = request.getParameter("role");
+            String login = request.getParameter("login");
+            long passwordHash = request.getParameter("pass").hashCode();
+            User.updateUser(id, name, role, login, passwordHash);
+            response.sendRedirect(request.getRequestURI());
+        }catch(Exception e){
+            error = e.getMessage();
+        }
+    }
+    
+    if(request.getParameter("formCancelUpdate") != null){
+        response.sendRedirect(request.getContextPath()+"/operation/users.jsp");
+    }
+    
     if(request.getParameter("formNewUser") !=null){
         String name = request.getParameter("name");
         String role = request.getParameter("role");
@@ -50,6 +68,7 @@
                 <fieldset>
                     <legend align="center">Novo usuário</legend>
                     <div class="container" align="center">
+                        <% if(request.getParameter("formUpdateUser") == null){ %>
                         <form>
                             <div class="form-row">
                                 <div class="col-3">
@@ -68,6 +87,29 @@
                                     <input type="password" class="form-control" name="pass" placeholder="Insira a senha"required>
                                 </div>
                                 <input type="submit" name="formNewUser" value="Cadastrar" class="btn btn-light btn-sm">
+                                <% }else{ 
+                                int f = Integer.parseInt(request.getParameter("id"));%>
+                                <form>
+                            <div class="form-row">
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="name" value="<%= User.getUsers().get(f-1).getName() %>"required>
+                                </div>
+                                <div class="col-2"> 
+                                    <select name="role" class="form-control">
+                                        <option value="ADMIN">ADMIN</option>
+                                        <option value="OPERADOR">OPERADOR</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="login" value="<%= User.getUsers().get(f-1).getLogin() %>"required>
+                                </div>
+                                <div class="col-3">
+                                    <input type="password" class="form-control" name="pass" value="<%= User.getUsers().get(f-1).getPasswordHash() %>"required>
+                                </div>
+                                <input type="hidden" name="id" value="<%= f %>"/>
+                                <input type="submit" name="formUpdateUser" value="Salvar Alteração" class="btn btn-light btn-sm">
+                                <a href="users.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn" name="formCancelUpdate" value="Cancelar"/></a>
+                                <% } %>
                             </div>
                         </form>
                     </div>
@@ -94,6 +136,7 @@
                         <td>
                             <form>
                                 <input type="hidden" name="id" value="<%=u.getId()%>"/>
+                                <input type="submit" class="btn btn-outline-light" name="formUpdateUser" value="Alterar">
                                 <input type="submit" class="btn btn-outline-light" name="formDeleteUser" value="Remover"/>
                             </form>
                         </td>

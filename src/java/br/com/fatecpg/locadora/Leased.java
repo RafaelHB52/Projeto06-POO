@@ -86,7 +86,7 @@ public class Leased {
             return l;
         }
     }
-    
+
     public static ArrayList<Leased> getLeaseds() throws Exception{
         String SQL = "SELECT * FROM LEASED_MOVIES WHERE END_PERIOD IS NULL ORDER BY BEGIN_PERIOD";
         ArrayList<Leased> periods = new ArrayList<>();
@@ -99,9 +99,9 @@ public class Leased {
         return periods;
     }
     
-    public static void addLeased(String name, String client) throws Exception{
-        String SQL = "INSERT INTO LEASED_MOVIES VALUES(default, ?, ?, ?, null, null)";
-        Object parameters[] = {name, client, new Date()};    
+    public static void addLeased(String name, String client, double price) throws Exception{
+        String SQL = "INSERT INTO LEASED_MOVIES VALUES(default, ?, ?, ?, null, ?)";
+        Object parameters[] = {name, client, new Date(), price};    
         DatabaseConnector.execute(SQL, parameters);
     }
     
