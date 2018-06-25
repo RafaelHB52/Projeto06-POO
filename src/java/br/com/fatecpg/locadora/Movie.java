@@ -9,13 +9,15 @@ public class Movie {
     private String name;
     private Date release;
     private String stock;
+    private double price; 
 
-    public Movie(long id, String genre, String name, Date release, String stock) {
+    public Movie(long id, String genre, String name, Date release, String stock, double price) {
         this.id = id;
         this.genre = genre;
         this.name = name;
         this.release = release;
         this.stock = stock;
+        this.price = price;
     }
 
     public long getId() {
@@ -58,6 +60,14 @@ public class Movie {
         this.stock = stock;
     }
     
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
      public static ArrayList<Movie> getMovies() throws Exception{
         String SQL = "SELECT * FROM MOVIES";
         ArrayList<Movie> movies = new ArrayList<>();
@@ -65,17 +75,18 @@ public class Movie {
         
        for(int i=0; i<list.size();i++){
             Object row[] = list.get(i);
-            Movie u = new Movie(
+            Movie m = new Movie(
                       (long) row[0]
                     , (String)row[1]
                     , (String)row[2]
                     , (Date)row[3]
-                    , (String)row[4]);
-            movies.add(u);
+                    , (String)row[4]
+                    , (double)row[5]);
+            movies.add(m);
         }
         return movies;
     }
-    public static void addMovie(String name, String genre, Date release, String stock)
+    public static void addMovie(String name, String genre, Date release, String stock, double price)
            throws Exception{
         String SQL = "INSERT INTO MOVIES VALUES("
                 +"default"
@@ -83,9 +94,10 @@ public class Movie {
                 +", ?"
                 +", ?"
                 +", ?"
+                +", ?"
                 +")";
 
-        Object parameters[] = {genre, name, release, stock};
+        Object parameters[] = {genre, name, release, stock, price};
         DatabaseConnector.execute(SQL, parameters);
     }
         public static void removeMovie(long id)

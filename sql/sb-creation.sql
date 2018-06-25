@@ -22,18 +22,19 @@ CREATE TABLE movies(
     , name varchar(200) not null
     , release TIMESTAMP not null
     , stock varchar(3) not null
+    , price DOUBLE PRECISION not null
 );
 INSERT INTO movies VALUES
-(default, 'TERROR', 'Fatec PG', '2018-06-26 13:30:00', 'SIM');
+(default, 'TERROR', 'Fatec PG', '2018-06-26 13:30:00', 'SIM', 3.85);
 
-DROP TABLE prices;
+/*DROP TABLE prices;
 CREATE TABLE prices(
     id BIGINT not null primary key
         GENERATED ALWAYS AS IDENTITY
         (START WITH 1, INCREMENT BY 1)
     , timestamp TIMESTAMP not null
     , new_price DOUBLE PRECISION not null
-);
+); */
 
 DROP TABLE leased_movies;
 CREATE TABLE leased_movies(

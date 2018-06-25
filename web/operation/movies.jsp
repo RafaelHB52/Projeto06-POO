@@ -20,8 +20,9 @@
         String name = request.getParameter("name");
         String genre = request.getParameter("genre");
         String stock = request.getParameter("stock");
+        double price = Double.parseDouble(request.getParameter("price"));
         try{
-            Movie.addMovie(name, genre, new Date(), stock);
+            Movie.addMovie(name, genre, new Date(), stock, price);
             response.sendRedirect(request.getRequestURI());
         }catch(Exception e){
             error = e.getMessage();
@@ -71,6 +72,9 @@
                                         <option value="NÃO">NÃO</option>
                                     </select>
                                 </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" name="price" placeholder="Insira o preço">
+                                </div>
                                 <input type="submit" name="formNewMovie" value="Cadastrar" class="btn btn-light btn-sm">
                             </div>
                         </form>
@@ -87,6 +91,7 @@
                         <th>Nome</th>
                         <th>Data</th>
                         <th>Disponível</th>
+                        <th>Preço</th>
                         <th>Comando</th>
                     </tr>
                     </thead>
@@ -97,6 +102,7 @@
                         <td><%=u.getName()%> </td>
                         <td><%=u.getRelease()%> </td>
                         <td><%=u.getStock()%> </td>
+                        <td><%=u.getPrice()%> </td>
                         <td>
                             <form>
                                 <input type="hidden" name="id" value="<%=u.getId()%>"/>

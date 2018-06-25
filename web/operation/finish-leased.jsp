@@ -1,6 +1,6 @@
+<%@page import="br.com.fatecpg.locadora.Movie"%>
 <%@page import="br.com.fatecpg.locadora.Leased"%>
 <%@page import="java.util.Date"%>
-<%@page import="br.com.fatecpg.locadora.Price"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -14,7 +14,7 @@
         leased = Leased.getLeased(id);
         Date now = new Date();
         hours = now.getHours() - leased.getBegins().getHours();
-        price = hours * Price.getCurrentPrice();
+        price = hours * Movie.getPrice();
         
         if(request.getParameter("formFinishLeased") != null){
             try{
