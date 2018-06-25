@@ -93,17 +93,17 @@ public class Leased {
             String SQL = "SELECT * FROM LEASED_MOVIES ";
             SQL += " WHERE name = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
-            list = DatabaseConnector.getQuery(SQL, new Object[]{name});
+            list = DatabaseConnector.getQuery(SQL, new Object[]{name, client});
         }else if(date != null && name == null && client != null){
             String SQL = "SELECT * FROM LEASED_MOVIES ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
-            list = DatabaseConnector.getQuery(SQL, new Object[]{date});
+            list = DatabaseConnector.getQuery(SQL, new Object[]{date, client});
          }else if(date != null && name != null && client != null){
             String SQL = "SELECT * FROM LEASED_MOVIES ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ? AND name = ? AND client = ?";
             SQL += " ORDER BY BEGIN_PERIOD";
-            list = DatabaseConnector.getQuery(SQL, new Object[]{date, name});
+            list = DatabaseConnector.getQuery(SQL, new Object[]{date, name, client});
         }else if(date != null && name == null && client == null){
             String SQL = "SELECT * FROM LEASED_MOVIES ";
             SQL += " WHERE VARCHAR(DATE(BEGIN_PERIOD)) = ?";
