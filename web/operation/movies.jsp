@@ -75,7 +75,7 @@
                         <form>
                             <div class="form-row">
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="name" placeholder="Insira o nome"required>
+                                    <input type="text" class="form-control" name="name" placeholder="Insira o nome" required>
                                 </div>
                                 <div class="col-2"> 
                                     <select name="genre" class="form-control">
@@ -92,7 +92,7 @@
                                     </select>
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" class="form-control" name="price" placeholder="Insira o preço"required>
+                                    <input type="text" class="form-control" name="price" placeholder="Insira o preço" required>
                                 </div>
                                 <input type="submit" name="formNewMovie" value="Cadastrar" class="btn btn-light btn-sm">
                         <% }else{ 
@@ -100,7 +100,7 @@
                             <form>
                             <div class="form-row">
                                 <div class="col-3">
-                                    <input type="text" class="form-control" name="name" value="<%= Movie.getMovies().get(f-1).getName() %>"required>
+                                    <input type="text" class="form-control" name="name" value="<%= Movie.getMovies().get(f-1).getName() %>" required>
                                 </div>
                                 <div class="col-2"> 
                                     <select name="genre" class="form-control">
@@ -117,11 +117,11 @@
                                     </select>
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" class="form-control" name="price" value="<%= Movie.getMovies().get(f-1).getPrice() %>"required>
+                                    <input type="text" class="form-control" name="price" value="<%= Movie.getMovies().get(f-1).getPrice() %>" required>
                                 </div>
                                 <input type="hidden" name="id" value="<%= f %>"/>
                                 <input type="submit" name="formUpdateMovie" value="Salvar Alteração" class="btn btn-light btn-sm">
-                                <a href="movies.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn" name="formCancelUpdate" value="Cancelar"/></a>
+                                <a href="movies.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn-sm" name="formCancelUpdate" value="Cancelar"/></a>
                                 <% } %>
                             </div>
                         </form>
