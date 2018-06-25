@@ -16,12 +16,30 @@
         }
     }
     
-    if(request.getParameter("formNewMovie") !=null){
-        String name = request.getParameter("name");
-        String genre = request.getParameter("genre");
-        String stock = request.getParameter("stock");
-        double price = Double.parseDouble(request.getParameter("price"));
+    if(request.getParameter("formUpdateMovie")!= null){
         try{
+            long id = Long.parseLong(request.getParameter("id"));
+            String name = request.getParameter("name");
+            String genre = request.getParameter("genre");
+            String stock = request.getParameter("stock");
+            double price = Double.parseDouble(request.getParameter("price"));
+            Movie.updateMovie(id, name, genre, stock, price);
+            response.sendRedirect(request.getRequestURI());
+        }catch(Exception e){
+            error = e.getMessage();
+        }
+    }
+    
+    if(request.getParameter("formCancelUpdate") != null){
+        response.sendRedirect(request.getContextPath()+"/operation/movies.jsp");
+    }
+    
+    if(request.getParameter("formNewMovie") !=null){
+        try{
+            String name = request.getParameter("name");
+            String genre = request.getParameter("genre");
+            String stock = request.getParameter("stock");
+            double price = Double.parseDouble(request.getParameter("price"));
             Movie.addMovie(name, genre, new Date(), stock, price);
             response.sendRedirect(request.getRequestURI());
         }catch(Exception e){
@@ -53,6 +71,7 @@
                 <fieldset>
                     <legend align="center">Novo filme</legend>
                     <div class="container" align="center">
+                        <% if(request.getParameter("formUpdateMovie") == null){ %>
                         <form>
                             <div class="form-row">
                                 <div class="col-3">
@@ -76,6 +95,32 @@
                                     <input type="text" class="form-control" name="price" placeholder="Insira o preço">
                                 </div>
                                 <input type="submit" name="formNewMovie" value="Cadastrar" class="btn btn-light btn-sm">
+                        <% }else{ %>
+                            <form>
+                            <div class="form-row">
+                                <div class="col-3">
+                                    <input type="text" class="form-control" name="name" placeholder="Insira o nome">
+                                </div>
+                                <div class="col-2"> 
+                                    <select name="genre" class="form-control">
+                                        <option value="AÇÂO">AÇÃO</option>
+                                        <option value="TERROR">TERROR</option>
+                                        <option value="ANIMAÇÃO">ANIMAÇÃO</option>
+                                        <option value="ROMANCE">ROMANCE</option>
+                                    </select>
+                                </div>
+                                <div class="col-2"> 
+                                    <select name="stock" class="form-control">
+                                        <option value="SIM">SIM</option>
+                                        <option value="NÃO">NÃO</option>
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" class="form-control" name="price" placeholder="Insira o preço">
+                                </div>
+                                <input type="submit" name="formUpdateMovie" value="Salvar Alteração" class="btn btn-light btn-sm">
+                                <a href="movies.jsp" class="btn btn-light btn"><input type="submit" class="btn btn-light btn" name="formCancelUpdate" value="Cancelar"/></a>
+                                <% } %>
                             </div>
                         </form>
                     </div>
@@ -95,27 +140,27 @@
                         <th>Comando</th>
                     </tr>
                     </thead>
-                    <%for(Movie u: Movie.getMovies()){%>
+                    <%for(Movie m: Movie.getMovies()){%>
                     <tr>
-                        <td><%=u.getId()%> </td>
-                        <td><%=u.getGenre()%> </td>
-                        <td><%=u.getName()%> </td>
-                        <td><%=u.getRelease()%> </td>
-                        <td><%=u.getStock()%> </td>
-                        <td><%=u.getPrice()%> </td>
+                        <td><%=m.getId()%> </td>
+                        <td><%=m.getGenre()%> </td>
+                        <td><%=m.getName()%> </td>
+                        <td><%=m.getRelease()%> </td>
+                        <td><%=m.getStock()%> </td>
+                        <td><%=m.getPrice()%> </td>
                         <td>
                             <form>
-                                <input type="hidden" name="id" value="<%=u.getId()%>"/>
+                                <input type="hidden" name="id" value="<%=m.getId()%>"/>
+                                <input type="submit" class="btn btn-outline-light" name="formUpdateMovie" value="Alterar">
                                 <input type="submit" class="btn btn-outline-light" name="formDeleteMovie" value="Remover"/>
                             </form>
                         </td>
                     </tr>
-                    <%}%>
+                    <% } %>
+                <% } %>
                 </table>
             </div>
-            
-            <%}%>
-        <%}%>
+        <% } %>
         <%@include file="../WEB-INF/jspf/scripts.jspf" %>
     </body>
 </html>

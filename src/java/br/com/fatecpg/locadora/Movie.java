@@ -106,4 +106,14 @@ public class Movie {
         Object parameters[] = {id};
         DatabaseConnector.execute(SQL, parameters);
     }
+        
+    public static void updateMovie(long id, String name, String genre, String stock, double price)
+           throws Exception{
+        String SQL = "UPDATE MOVIES"
+                + " SET name = ?, genre = ? , stock = ?, price = ? "
+                + " WHERE ID =?";
+
+        Object parameters[] = {genre, name, stock, price};
+        DatabaseConnector.execute(SQL, parameters);
+    }
 }
