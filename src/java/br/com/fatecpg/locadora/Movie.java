@@ -110,10 +110,10 @@ public class Movie {
     public static void updateMovie(long id, String name, String genre, String stock, double price)
            throws Exception{
         String SQL = "UPDATE MOVIES"
-                + " SET name = ?, genre = ? , stock = ?, price = ? "
-                + " WHERE ID =?";
+                + " SET name = ?, genre = ?, stock = ?, price = ? "
+                + " WHERE ID = ?";
 
-        Object parameters[] = {genre, name, stock, price};
+        Object parameters[] = {id, genre, name, stock, price};
         DatabaseConnector.execute(SQL, parameters);
     }
 }
